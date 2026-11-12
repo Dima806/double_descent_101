@@ -1,0 +1,77 @@
+{
+  "notebook": "04_benign_overfitting",
+  "claim": "A model with zero training error on noisy labels can generalise better than the classical sweet spot.",
+  "settings": {
+    "headline_noise": 0.3,
+    "n_train": 100,
+    "dim": 20,
+    "interpolating_n_params": 2000,
+    "seed": 2026
+  },
+  "results": {
+    "example_draw": {
+      "train_mse": {
+        "32": 0.2159745819210755,
+        "2000": 3.7164785692637156e-30
+      },
+      "test_mse": {
+        "32": 0.3950656641473679,
+        "2000": 0.2470207996375504
+      }
+    },
+    "noise_footprint_median": {
+      "at_threshold": 27.050961541321605,
+      "at_interpolating": 0.06399096093480244
+    },
+    "null_predictor_mse": 0.6427508324655257,
+    "scoreboard": {
+      "noise": [
+        0.0,
+        0.1,
+        0.3,
+        0.5
+      ],
+      "null predictor": [
+        0.6427508324655257,
+        0.6427508324655257,
+        0.6427508324655257,
+        0.6427508324655257
+      ],
+      "classical sweet spot": [
+        0.3517289566587467,
+        0.368519303999399,
+        0.41672183449775485,
+        0.49471246751796516
+      ],
+      "threshold p = n": [
+        30.270405208886555,
+        34.04992295448706,
+        71.44812261409119,
+        81.49482999069508
+      ],
+      "interpolating p = 2000": [
+        0.1736480368128495,
+        0.18131782694132156,
+        0.242518007026888,
+        0.3634193050694232
+      ],
+      "sweet spot p": [
+        50,
+        43,
+        32,
+        22
+      ]
+    }
+  },
+  "figures": [
+    "04_memorize_and_generalize",
+    "04_signal_noise_split",
+    "04_scoreboard"
+  ],
+  "takeaways": [
+    "The interpolating model memorises every noisy label yet has lower test error than the classical sweet spot.",
+    "Split by linearity, the memorised-noise part of the fit has a test footprint that shrinks as capacity grows.",
+    "Benign overfitting needs room (high dimension, wide feature maps); in 1-D it only comes close."
+  ],
+  "next": "05_more_data_can_hurt"
+}

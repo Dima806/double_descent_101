@@ -1,0 +1,78 @@
+# Every experiment number lives here; src/config.py validates it.
+# Override any value with env vars: DD_<SECTION>__<KEY>=value (e.g. DD_RANDOM_FEATURES__N_SEEDS=10).
+
+seed: 2026
+
+# Gaussian label-noise standard deviations (signal variance is ~0.6 for both tasks).
+noise_levels: [0.0, 0.1, 0.3, 0.5]
+headline_noise: 0.3
+
+# 1-D track: polynomials you can draw. Shows the U, the peak at p = n, the second descent.
+polynomial:
+  task:
+    function: two_tone        # sin(pi x) + 0.5 cos(2 pi x) on x ~ U[-1, 1]
+    dim: 1
+    n_test: 2000
+  n_train: 15
+  decay: 1.0                  # Legendre P_k scaled by sqrt(2k+1) / (1+k)^decay
+  normalize: true
+  grid:
+    max_ratio: 6.0            # degrees up to 6 * n_train - 1
+    n_under: null             # every integer below the threshold window
+    dense_window: 0.2
+    n_over: 20
+  n_seeds: 200
+  decomposition_draws: 2000
+
+# 20-D track: random ReLU features. The second descent beats the classical sweet spot here.
+random_features:
+  task:
+    function: tanh_ridge      # tanh(2 <beta, x>) on x ~ N(0, I_20)
+    dim: 20
+    n_test: 2000
+    truth_seed: 0
+  n_train: 100
+  weight_scale: 1.0
+  bias_scale: 1.0
+  grid:
+    max_ratio: 20.0           # widths up to 2000
+    n_under: 25
+    dense_window: 0.15
+    n_over: 20
+  n_seeds: 40
+  decomposition_draws: 600
+
+# "More data can hurt": random features with a fixed width, growing training set.
+data_sweep:
+  n_params: 100
+  n_train_grid: [10, 20, 30, 40, 50, 60, 70, 80, 85, 90, 95, 98, 100, 102, 105, 110, 120, 140, 160, 200, 250, 300, 400]
+  n_seeds: 40
+
+# Test error over (n_params, n_train) for random features.
+heatmap:
+  n_params_grid: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 140, 160, 180, 200, 240, 300, 400, 500]
+  n_train_grid: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 140, 160, 180, 200, 240, 300, 400, 500]
+  n_seeds: 20
+
+# Ridge penalty per training point: minimise (1/n)||y - phi theta||^2 + lambda ||theta||^2.
+ridge:
+  lambdas: [0.0, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]
+  n_seeds: 20
+
+# Optional tiny MLP (needs the torch extra): one hidden ReLU layer, both layers trained.
+# On the 20-D task n_params = 22 * width + 1, so the threshold p = n = 100 sits near width 4.5.
+mlp:
+  n_train: 100
+  widths: [1, 2, 3, 4, 5, 6, 7, 9, 13, 23, 42, 76, 136]
+  epochs: 3000
+  learning_rate: 0.01
+  n_seeds: 3
+  noise: 0.3
+  threads: 2
+
+paths:
+  figures_dir: outputs/figures
+  data_dir: outputs/data
+
+plots:
+  dpi: 150

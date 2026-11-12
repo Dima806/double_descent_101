@@ -1,0 +1,47 @@
+{
+  "figure": "04_scoreboard",
+  "png": "outputs/figures/04_scoreboard.png",
+  "title": "The scoreboard",
+  "caption": "Median test error of the best classical model (p < n), the threshold model (p = n), the interpolating model (p = 2000) and the always-zero predictor, at four noise levels (random-feature track, n = 100).",
+  "data": {
+    "n_train": 100,
+    "table": {
+      "noise": [
+        0.0,
+        0.1,
+        0.3,
+        0.5
+      ],
+      "null predictor": [
+        0.6427508324655257,
+        0.6427508324655257,
+        0.6427508324655257,
+        0.6427508324655257
+      ],
+      "classical sweet spot": [
+        0.3517289566587467,
+        0.368519303999399,
+        0.41672183449775485,
+        0.49471246751796516
+      ],
+      "threshold p = n": [
+        30.270405208886555,
+        34.04992295448706,
+        71.44812261409119,
+        81.49482999069508
+      ],
+      "interpolating p = 2000": [
+        0.1736480368128495,
+        0.18131782694132156,
+        0.242518007026888,
+        0.3634193050694232
+      ],
+      "sweet spot p": [
+        50,
+        43,
+        32,
+        22
+      ]
+    }
+  }
+}

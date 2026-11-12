@@ -1,0 +1,80 @@
+{
+  "notebook": "01_the_classical_u",
+  "claim": "Below the interpolation threshold, test error is U-shaped: bias falls, variance rises.",
+  "settings": {
+    "headline_noise": 0.3,
+    "polynomial": {
+      "task": {
+        "function": "two_tone",
+        "dim": 1,
+        "n_test": 2000,
+        "truth_seed": 0
+      },
+      "n_train": 15,
+      "decay": 1.0,
+      "normalize": true,
+      "grid": {
+        "max_ratio": 6.0,
+        "n_under": null,
+        "dense_window": 0.2,
+        "n_over": 20
+      },
+      "n_seeds": 200,
+      "decomposition_draws": 2000
+    },
+    "random_features": {
+      "task": {
+        "function": "tanh_ridge",
+        "dim": 20,
+        "n_test": 2000,
+        "truth_seed": 0
+      },
+      "n_train": 100,
+      "weight_scale": 1.0,
+      "bias_scale": 1.0,
+      "grid": {
+        "max_ratio": 20.0,
+        "n_under": 25,
+        "dense_window": 0.15,
+        "n_over": 20
+      },
+      "n_seeds": 40,
+      "decomposition_draws": 600
+    },
+    "seed": 2026
+  },
+  "results": {
+    "polynomial_sweet_spot": {
+      "n_params": 5,
+      "median_test_mse": 0.12407709230282712
+    },
+    "random_features_sweet_spot": {
+      "n_params": 32,
+      "median_test_mse": 0.41672183449775485
+    },
+    "polynomial_test_mse_at_p1": 0.6452241565200898,
+    "decomposition_sweet_spot": {
+      "n_params": 32,
+      "expected_mse": 0.4332440910938977
+    },
+    "bias2_first_last": [
+      0.619996872975909,
+      0.10636623645423626
+    ],
+    "variance_first_last": [
+      0.01767502985720522,
+      2.2820967923148
+    ]
+  },
+  "figures": [
+    "01_classical_u",
+    "01_bias_variance",
+    "01_fits_underfit_to_overfit"
+  ],
+  "takeaways": [
+    "The classical U is real on the underparameterized side.",
+    "Bias falls and variance rises with capacity; their sum is the U.",
+    "Training error falls monotonically but never reaches zero below the threshold."
+  ],
+  "next": "02_the_interpolation_peak"
+}

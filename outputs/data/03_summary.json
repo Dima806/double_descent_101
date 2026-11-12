@@ -1,0 +1,78 @@
+{
+  "notebook": "03_the_second_descent",
+  "claim": "Past the interpolation threshold test error descends again with zero training error, and in 20-D random features it beats the classical sweet spot.",
+  "settings": {
+    "headline_noise": 0.3,
+    "n_train": {
+      "polynomial": 15,
+      "random_features": 100
+    },
+    "polynomial_decay": 1.0,
+    "decomposition_draws": 600,
+    "seed": 2026
+  },
+  "results": {
+    "curves": {
+      "polynomial": {
+        "n_train": 15,
+        "classical_min_params": 5,
+        "classical_min_error": 0.12407709230282718,
+        "peak_params": 15,
+        "peak_error": 3210621083.1039667,
+        "second_min_params": 90,
+        "second_min_error": 0.15895827839724574,
+        "final_params": 90,
+        "final_error": 0.15895827839724574,
+        "beats_classical": false,
+        "peak_over_classical": 25876018074.8595
+      },
+      "random_features": {
+        "n_train": 100,
+        "classical_min_params": 32,
+        "classical_min_error": 0.41672183449775424,
+        "peak_params": 100,
+        "peak_error": 71.44812261409106,
+        "second_min_params": 2000,
+        "second_min_error": 0.24251800702688814,
+        "final_params": 2000,
+        "final_error": 0.24251800702688814,
+        "beats_classical": true,
+        "peak_over_classical": 171.45279344482273
+      }
+    },
+    "rf_improvement_over_sweet_spot": 0.4180338370818074,
+    "poly_gap_to_sweet_spot": 0.2811251089708504,
+    "decomposition_at": {
+      "32": {
+        "bias2": 0.140562729520468,
+        "variance": 0.288295467656193,
+        "expected_mse": 0.42885819717666107
+      },
+      "100": {
+        "bias2": 10.436464898704354,
+        "variance": 5370.1912489764745,
+        "expected_mse": 5380.6277138751775
+      },
+      "2000": {
+        "bias2": 0.10133257603092742,
+        "variance": 0.13718977605642874,
+        "expected_mse": 0.23852235208735625
+      }
+    },
+    "decay_0_final_median": 0.5432663125710264,
+    "decay_1_final_median": 0.15895827839724574
+  },
+  "figures": [
+    "03_double_descent",
+    "03_fits_across_threshold",
+    "03_bias_variance_across_threshold",
+    "03_which_interpolant"
+  ],
+  "takeaways": [
+    "Past p = n test error descends again while training error stays at zero.",
+    "In 20-D random features the second descent beats the classical sweet spot; in 1-D polynomials it levels off just above it.",
+    "Bias is flat past the threshold; variance spikes at p = n and then collapses.",
+    "Which interpolant the solver picks (set by the feature scaling) decides how well an interpolating model generalises."
+  ],
+  "next": "04_benign_overfitting"
+}

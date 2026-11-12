@@ -1,0 +1,111 @@
+{
+  "notebook": "05_more_data_can_hurt",
+  "claim": "At fixed capacity near the threshold, adding training data increases test error over a range; the threshold is about the parameters-to-data ratio.",
+  "settings": {
+    "n_params": 100,
+    "n_train_grid": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      85,
+      90,
+      95,
+      98,
+      100,
+      102,
+      105,
+      110,
+      120,
+      140,
+      160,
+      200,
+      250,
+      300,
+      400
+    ],
+    "noise_levels": [
+      0.0,
+      0.1,
+      0.3,
+      0.5
+    ],
+    "data_sweep_seeds": 40,
+    "heatmap": {
+      "n_params_grid": [
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100,
+        110,
+        120,
+        140,
+        160,
+        180,
+        200,
+        240,
+        300,
+        400,
+        500
+      ],
+      "n_train_grid": [
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100,
+        110,
+        120,
+        140,
+        160,
+        180,
+        200,
+        240,
+        300,
+        400,
+        500
+      ],
+      "n_seeds": 20
+    },
+    "seed": 2026
+  },
+  "results": {
+    "headline_noise": 0.3,
+    "best_n_below_p": 30,
+    "median_test_mse": {
+      "at_best_n_below_p": 0.4766731074596416,
+      "at_n_equals_p": 52.9149776037351,
+      "at_max_n": 0.2054543331636538
+    },
+    "worsening_factor": 111.00894255549176,
+    "diagonal_median_range": [
+      27.384507286545848,
+      258.8678470504602
+    ]
+  },
+  "figures": [
+    "05_more_data_hurts",
+    "05_error_landscape"
+  ],
+  "takeaways": [
+    "With p fixed at 100, adding data from about 30 to 100 points makes test error about a hundred times worse.",
+    "The peak is a ridge along p = n on the (p, n) error landscape.",
+    "Capacity sweeps and data sweeps are two slices across the same ridge."
+  ],
+  "next": "06_what_it_means_for_you"
+}

@@ -1,0 +1,118 @@
+{
+  "notebook": "06_what_it_means_for_you",
+  "claim": "The bias-variance U is regime-dependent: it governs p < n; past the threshold bigger is often better; regularization flattens the peak.",
+  "settings": {
+    "headline_noise": 0.3,
+    "n_train": 100,
+    "ridge": {
+      "lambdas": [
+        0.0,
+        0.0001,
+        0.001,
+        0.01,
+        0.1,
+        1.0
+      ],
+      "n_seeds": 20
+    },
+    "mlp": {
+      "n_train": 100,
+      "widths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        13,
+        23,
+        42,
+        76,
+        136
+      ],
+      "epochs": 3000,
+      "learning_rate": 0.01,
+      "n_seeds": 3,
+      "noise": 0.3,
+      "threads": 2
+    },
+    "seed": 2026
+  },
+  "results": {
+    "ridge_summary": {
+      "lambda": [
+        0.0,
+        0.0001,
+        0.001,
+        0.01,
+        0.1,
+        1.0
+      ],
+      "median at p = n": [
+        67.2248304738574,
+        2.816237359199066,
+        0.9211202008967717,
+        0.3646682034427381,
+        0.21937360331604383,
+        0.27572500189362104
+      ],
+      "best p": [
+        1722.0,
+        1722.0,
+        1722.0,
+        1722.0,
+        285.0,
+        814.0
+      ],
+      "best median MSE": [
+        0.252778590994931,
+        0.2527457272346158,
+        0.2524509658440153,
+        0.2495998706314438,
+        0.20199851690751325,
+        0.15994726016390728
+      ],
+      "peak / best": [
+        265.9435287191923,
+        11.90001369556991,
+        3.805974166612467,
+        2.5625271575028656,
+        3.1672113921405303,
+        4.012691957638395
+      ]
+    },
+    "best_ridge_lambda": 1.0,
+    "ridgeless": {
+      "n_train": 100,
+      "classical_min_params": 32,
+      "classical_min_error": 0.4290892894121473,
+      "peak_params": 100,
+      "peak_error": 67.2248304738574,
+      "second_min_params": 1722,
+      "second_min_error": 0.252778590994931,
+      "final_params": 2000,
+      "final_error": 0.2530333358475525,
+      "beats_classical": true,
+      "peak_over_classical": 156.6686284944457
+    },
+    "mlp": {
+      "peak_n_params": 111,
+      "peak_median_test_mse": 0.9599673947232628,
+      "final_median_test_mse": 0.24061182634340553,
+      "first_median_test_mse": 0.12202740271943126
+    }
+  },
+  "figures": [
+    "06_ridge_reshapes_curve",
+    "06_regime_map",
+    "06_tiny_mlp"
+  ],
+  "takeaways": [
+    "A small ridge penalty removes most of the interpolation peak; a tuned one beats ridgeless at every size.",
+    "A trained two-layer ReLU network shows the same rise-peak-fall shape, with the peak near p = n.",
+    "Classical rules govern p < n; near p = n expect a predictable peak; for p >> n bigger often helps and interpolation is fine."
+  ],
+  "next": null
+}

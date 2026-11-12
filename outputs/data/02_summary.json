@@ -1,0 +1,147 @@
+{
+  "notebook": "02_the_interpolation_peak",
+  "claim": "Test error peaks exactly at the interpolation threshold p = n, and the peak grows with label noise.",
+  "settings": {
+    "noise_levels": [
+      0.0,
+      0.1,
+      0.3,
+      0.5
+    ],
+    "headline_noise": 0.3,
+    "n_train": {
+      "polynomial": 15,
+      "random_features": 100
+    },
+    "seed": 2026
+  },
+  "results": {
+    "peaks": {
+      "polynomial|sigma=0.0": {
+        "n_train": 15,
+        "classical_min_params": 13,
+        "classical_min_error": 1.2313830512131837e-05,
+        "peak_params": 1,
+        "peak_error": 0.6446890212495876,
+        "second_min_params": 16,
+        "second_min_error": 0.000533994913900084,
+        "final_params": 90,
+        "final_error": 0.024805275752750443,
+        "beats_classical": false,
+        "peak_over_classical": 52354.87207773624
+      },
+      "polynomial|sigma=0.1": {
+        "n_train": 15,
+        "classical_min_params": 7,
+        "classical_min_error": 0.028198517387971286,
+        "peak_params": 15,
+        "peak_error": 356735389.332024,
+        "second_min_params": 90,
+        "second_min_error": 0.046833030517979816,
+        "final_params": 90,
+        "final_error": 0.046833030517979816,
+        "beats_classical": false,
+        "peak_over_classical": 12650856228.497938
+      },
+      "polynomial|sigma=0.3": {
+        "n_train": 15,
+        "classical_min_params": 5,
+        "classical_min_error": 0.12407709230282712,
+        "peak_params": 15,
+        "peak_error": 3210621083.103967,
+        "second_min_params": 90,
+        "second_min_error": 0.1589582783972458,
+        "final_params": 90,
+        "final_error": 0.1589582783972458,
+        "beats_classical": false,
+        "peak_over_classical": 25876018074.859516
+      },
+      "polynomial|sigma=0.5": {
+        "n_train": 15,
+        "classical_min_params": 5,
+        "classical_min_error": 0.2015555195559617,
+        "peak_params": 15,
+        "peak_error": 8918393330.35388,
+        "second_min_params": 90,
+        "second_min_error": 0.3711895748761721,
+        "final_params": 90,
+        "final_error": 0.3711895748761721,
+        "beats_classical": false,
+        "peak_over_classical": 44247824867.31998
+      },
+      "random_features|sigma=0.0": {
+        "n_train": 100,
+        "classical_min_params": 50,
+        "classical_min_error": 0.3517289566587467,
+        "peak_params": 100,
+        "peak_error": 30.270405208886555,
+        "second_min_params": 2000,
+        "second_min_error": 0.1736480368128495,
+        "final_params": 2000,
+        "final_error": 0.1736480368128495,
+        "beats_classical": true,
+        "peak_over_classical": 86.06173769837041
+      },
+      "random_features|sigma=0.1": {
+        "n_train": 100,
+        "classical_min_params": 43,
+        "classical_min_error": 0.368519303999399,
+        "peak_params": 100,
+        "peak_error": 34.04992295448706,
+        "second_min_params": 2000,
+        "second_min_error": 0.18131782694132156,
+        "final_params": 2000,
+        "final_error": 0.18131782694132156,
+        "beats_classical": true,
+        "peak_over_classical": 92.39657891718636
+      },
+      "random_features|sigma=0.3": {
+        "n_train": 100,
+        "classical_min_params": 32,
+        "classical_min_error": 0.41672183449775485,
+        "peak_params": 100,
+        "peak_error": 71.44812261409119,
+        "second_min_params": 2000,
+        "second_min_error": 0.242518007026888,
+        "final_params": 2000,
+        "final_error": 0.242518007026888,
+        "beats_classical": true,
+        "peak_over_classical": 171.4527934448228
+      },
+      "random_features|sigma=0.5": {
+        "n_train": 100,
+        "classical_min_params": 22,
+        "classical_min_error": 0.49471246751796516,
+        "peak_params": 100,
+        "peak_error": 81.49482999069508,
+        "second_min_params": 2000,
+        "second_min_error": 0.3634193050694232,
+        "final_params": 2000,
+        "final_error": 0.3634193050694232,
+        "beats_classical": true,
+        "peak_over_classical": 164.73170850042433
+      }
+    },
+    "contorted_fit": {
+      "n_params": 15,
+      "train_mse": 2.86054545447886e-23,
+      "test_mse": 157809433.95933324
+    },
+    "rf_sigma_min_median": {
+      "half_n": 0.6687956283363988,
+      "n": 0.011937018784263845,
+      "two_n": 0.9492799088448491
+    }
+  },
+  "figures": [
+    "02_peak_at_threshold",
+    "02_contorted_fit",
+    "02_why_it_spikes"
+  ],
+  "takeaways": [
+    "With noise, the median test error peaks at p = n in both tracks.",
+    "The peak is made of noise: it nearly vanishes at sigma = 0 for the polynomial and grows with sigma.",
+    "At p = n the design matrix is nearly singular, so fitted noise and coefficients explode."
+  ],
+  "next": "03_the_second_descent"
+}
